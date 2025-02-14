@@ -1,0 +1,13 @@
+client/node_modules/
+server/node_modules/
+server/.env
+server/.DS_Store
+server/build/
+server/dist/
+server/.vite/
+
+client/.env
+client/.DS_Store
+client/build/
+client/dist/
+client/.vite/
