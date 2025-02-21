@@ -3,7 +3,10 @@ const cors = require("cors");
 const swaggerUi = require("swagger-ui-express");
 const yaml = require("js-yaml");
 const fs = require("fs");
+const connectDB = require("./config/db");
 require("dotenv").config();
+
+connectDB();
 
 const app = express();
 app.use(cors());
@@ -13,18 +16,20 @@ app.use(express.json()); // Allow JSON body in requests
 const swaggerDocument = yaml.load(fs.readFileSync("./swagger.yaml", "utf8"));
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
+app.use("/api/profile", require("./routes/profileRoutes"));
+
 app.get("/", (req, res) => {
   res.send("Welcome to my Portfolio API!");
 });
 
-// Sample API route
-app.get("/api/profile", (req, res) => {
-  res.json({
-    name: "Your Name",
-    role: "Full Stack Developer",
-    about: "I love building awesome applications.",
-  });
-});
+// // Sample API route
+// app.get("/api/profile", (req, res) => {
+//   res.json({
+//     name: "Ogbulu Success",
+//     role: "Full Stack Developer",
+//     about: "I love building awesome applications.",
+//   });
+// });
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

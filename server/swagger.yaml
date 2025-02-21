@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Portfolio API
-  description: API documentation for my portfolio website
+  description: API documentation for my portfolio
   version: 1.0.0
 servers:
   - url: http://localhost:5000
@@ -9,7 +9,6 @@ paths:
   /api/profile:
     get:
       summary: Get profile details
-      description: Returns basic profile information
       responses:
         "200":
           description: Successful response
@@ -20,10 +19,25 @@ paths:
                 properties:
                   name:
                     type: string
-                    example: "Your Name"
                   role:
                     type: string
-                    example: "Full Stack Developer"
                   about:
                     type: string
-                    example: "I love building awesome applications."
+    post:
+      summary: Create a new profile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                role:
+                  type: string
+                about:
+                  type: string
+      responses:
+        "201":
+          description: Profile created successfully

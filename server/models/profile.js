@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const ProfileSchema = new mongoose.Schema({
-  name: { type: String, require: true },
-  role: { type: String, require: true },
-  about: { type: string, require: true },
+  name: { type: String, required: true },
+  role: { type: String, required: true },
+  about: { type: String, required: true },
 });
 
 module.exports = mongoose.model("Profile", ProfileSchema);
